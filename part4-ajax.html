@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX Demo - Người 4</title>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f5f7fa;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .box {
+            background: white;
+            padding: 20px;
+            width: 400px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background: #e9f2ff;
+            margin: 5px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>AJAX Demo</h2>
+
+    <button id="loadBtn">Load Users</button>
+
+    <p id="status"></p>
+
+    <ul id="userList"></ul>
+</div>
+
+<script>
+$(document).ready(function () {
+
+    $("#loadBtn").click(function () {
+
+        $("#status").text("Loading data...");
+
+        $.ajax({
+            url: "https://jsonplaceholder.typicode.com/users",
+            method: "GET",
+
+            success: function (data) {
+
+                $("#status").text("Data loaded successfully.");
+
+                $("#userList").empty();
+
+                data.forEach(function (user) {
+                    $("#userList").append(
+                        "<li><strong>" + user.name + "</strong><br>" +
+                        user.email + "</li>"
+                    );
+                });
+            },
+
+            error: function () {
+                $("#status").text("Error loading data.");
+            }
+        });
+
+    });
+
+});
+</script>
+
+</body>
+</html>
