@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo Validation - Người số 2</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        .error { color: red; font-size: 0.9em; display: none; }
+        input { display: block; margin-bottom: 5px; padding: 8px; width: 250px; }
+        button { padding: 10px 20px; cursor: pointer; background: #007bff; color: white; border: none; }
+    </style>
+</head>
+<body>
+
+    <h2>Đăng ký thành viên</h2>
+    <form id="myForm">
+        <input type="text" id="username" placeholder="Nhập họ tên...">
+        <span id="errorMsg" class="error">Vui lòng không để trống tên!</span>
+        
+        <button type="submit">Gửi đăng ký</button>
+    </form>
+
+    <script>
+        // 1. Bắt sự kiện Submit của form 
+        document.getElementById('myForm').addEventListener('submit', function(event) {
+            
+            // 2. Chặn hành động reload trang mặc định 
+            event.preventDefault(); 
+            
+            const username = document.getElementById('username').value;
+            const errorMsg = document.getElementById('errorMsg');
+
+            // 3. Logic kiểm tra rỗng 
+            if (username.trim() === "") {
+                errorMsg.style.display = 'block'; // Hiện thông báo đỏ 
+                console.log("Validate thất bại: Trang web KHÔNG reload.");
+            } else {
+                errorMsg.style.display = 'none';
+                alert("Gửi thành công! (Trang web vẫn không bị reload)");
+                console.log("Dữ liệu hợp lệ: " + username);
+            }
+        });
+    </script>
+
+</body>
+</html>
