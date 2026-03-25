@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Benchmark: Form Handling JS vs jQuery</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 40px; background: #f4f7f6; }
+        .container { max-width: 500px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        input { width: 70%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
+        button { padding: 10px 15px; cursor: pointer; border: none; border-radius: 5px; color: white; transition: 0.3s; }
+        #js-run { background-color: #f7df1e; color: black; font-weight: bold; }
+        #jquery-run { background-color: #0769ad; font-weight: bold; }
+        ul { margin-top: 20px; padding: 0; list-style: none; }
+        li { background: #e8f4fd; margin: 5px 0; padding: 10px; border-radius: 5px; border-left: 5px solid #0769ad; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Ghi chú nhanh</h2>
+    <input type="text" id="userInput" placeholder="Type something here...">
+    <hr>
+    <button id="js-run">JavaScript</button>
+    <button id="jquery-run">jQuery</button>
+
+    <ul id="note-list">
+        </ul>
+</div>
+
+<script>
+    const input = document.getElementById('userInput');
+    const list = document.getElementById('note-list');
+
+    // 1. JS THUẦN (Vanilla JS)
+    document.getElementById('js-run').onclick = function() {
+        console.time("Execution Time (JS)");
+        
+        const val = input.value;
+        if (val !== "") {
+            const li = document.createElement('li');
+            li.innerText = "[JS] " + val;
+            
+            //JS làm hiệu ứng fadeIn thủ công
+            li.style.opacity = 0;
+            list.appendChild(li);
+            
+            let op = 0;
+            let timer = setInterval(function () {
+                if (op >= 1) clearInterval(timer);
+                li.style.opacity = op;
+                op += 0.1;
+            }, 50);
+        }
+
+        console.timeEnd("Execution Time (JS)");
+    };
+
+    // 2. JQUERY
+    $('#jquery-run').click(function() {
+        console.time("Execution Time (jQuery)");
+        
+        const val = $('#userInput').val();
+        if (val !== "") {
+            // Tạo, chèn nội dung + hiệu ứng fadeIn
+            $('<li>').text("[jQuery] " + val).appendTo('#note-list').hide().fadeIn(500);
+        }
+
+        console.timeEnd("Execution Time (jQuery)");
+    });
+</script>
+
+</body>
+</html>
