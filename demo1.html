@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+<style>
+        body { 
+            text-align: center; 
+            padding: 50px; 
+            font-family: Arial, sans-serif; 
+        }
+        #message { 
+            font-size: 28px; 
+            color: blue; 
+            margin: 30px; 
+        }
+    </style>
+</head>
+<body>
+
+<button id="btn">Click để thay đổi</button>
+<p id="message">Nội dung ban đầu</p>
+
+<script>
+  document.getElementById("btn").addEventListener("click", function() {
+    const msg = document.getElementById("message");
+    msg.textContent = "Nội dung đã được thay đổi";   // DOM Manipulation: thay đổi nội dung
+    msg.style.color = "red";                         // DOM Manipulation: thay đổi kiểu dáng
+  });
+</script>
+
+</body>
+</html>
