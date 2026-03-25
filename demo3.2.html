@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page Title</title>
+    <style>
+        body { 
+            text-align: center; 
+            padding: 50px; 
+            font-family: Arial, sans-serif; 
+        }
+        #message { 
+            font-size: 28px; 
+            color: blue; 
+            margin: 30px; 
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+
+    <button id="btn">Click để thay đổi</button>
+    <p id="message">Nội dung ban đầu</p>
+
+    <script>
+        $(document).ready(function() {
+            $("#btn").click(function() {
+           
+                $("#message")
+                    .text("Nội dung đã được thay đổi") 
+                    .css("color", "red");             
+            });
+        });
+    </script>
+
+</body>
+</html>
