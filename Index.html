@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Validation</title>
+    <style>
+        .error {
+            color: red;
+        }
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Form đăng ký</h2>
+
+<form id="myForm">
+    Name: <input type="text" id="name"><br><br>
+    Email: <input type="text" id="email"><br><br>
+
+    <p id="message"></p>
+
+    <button type="submit">Gửi</button>
+</form>
+
+<script>
+document.getElementById("myForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // chặn reload trang
+
+    let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+    let message = document.getElementById("message");
+
+    if(name === "" || email === "") {
+        message.innerText = "Vui lòng nhập đầy đủ thông tin!";
+        message.className = "error";
+    } else {
+        message.innerText = "Dữ liệu hợp lệ!";
+        message.className = "success";
+    }
+});
+</script>
+
+</body>
+</html>
